@@ -1,17 +1,16 @@
-// for navigator language
-var lang = window.navigator.language;
-// you can change the language
-//var lang = 'en';
+//Centralize all configuration options.
 
-//change weather params here:
-var weatherParams = {
-    'q':'Baarn,Netherlands',
-    'units':'metric',
-    'lang':lang
-};
+"use strict";
 
-// compliments:
-var compliments = [
+var mirror = new function () {
+
+    var config = {
+        //get browser language.
+        lang: window.navigator.language,
+        //limit the number of calendar events to display, 0 disables.
+        eventsToDisplay: 3,
+
+        compliments: [
             'Hey, handsome!',
             'Hi, sexy!',
             'Hello, beauty!',
@@ -19,5 +18,24 @@ var compliments = [
             'Wow, you look hot!',
             'Looking good today!',
             'You look nice!',
-            'Enjoy your day!'
-        ];
+            'Enjoy your day!',
+            'Sha-WING!',
+            'I bet you look good on the dancefloor!'
+        ],
+        enableDishWasher: 0,
+        newsFeeds: []
+
+    };
+    //create weather parameters. Need to split it from config as it depends on config.lang.
+    var weatherParams = {
+        'q': 'Bloomington,IN',
+        'units': 'imperial',
+        'lang': config.lang
+    };
+
+    config.weatherParams = weatherParams;
+
+    return {
+        config:config
+    }
+}();
